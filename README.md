@@ -1,5 +1,3 @@
-# Traducción al castellano del repositorio de Liberapay
-
 > Esto es solo una traducíon del repositorio de Liberpay y no forma
 > parte de su código, se trata solamente de ayudar a entender el
 > funcionamiento de Liberapay a personas que no hablen ingles o
@@ -10,7 +8,7 @@
 
 
 
-# Liberapay
+# Liberapay (enEspañol)
 
 [![Build Status](https://travis-ci.org/liberapay/liberapay.com.svg?branch=master)](https://travis-ci.org/liberapay/liberapay.com)
 [![Weblate](https://hosted.weblate.org/widgets/liberapay/-/shields-badge.svg)](https://hosted.weblate.org/engage/liberapay/?utm_source=widget)
@@ -242,5 +240,5 @@ All arguments are passed to the underlying `py.test` command, so you can use `-x
 
 Traducid por [Álvaro Araoz](https://imalvaro.com).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzAyODU2LC04MTUzNjA3NjZdfQ==
+eyJoaXN0b3J5IjpbODQwMTU5OTY3LC04MTUzNjA3NjZdfQ==
 -->
