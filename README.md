@@ -238,9 +238,9 @@ All arguments are passed to the underlying `py.test` command, so you can use `-x
 [CC0 Dedicación de Dominio Público](https://creativecommons.org/publicdomain/zero/1.0/) (Haz [clic aquí](https://github.com/liberapay/liberapay.com/issues/564) para más detalles.)
 
 
-## Créditos de la taducción
+## Créditos de la traducción
 
 Traducid por [Álvaro Araoz](https://imalvaro.com).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyMDExNTAwOCwtODE1MzYwNzY2XX0=
+eyJoaXN0b3J5IjpbLTE5MzAyODU2LC04MTUzNjA3NjZdfQ==
 -->
