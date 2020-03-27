@@ -1,7 +1,14 @@
 # Spanish translation of the Liberapay repository
-Esto es solo una traducíon del repositorio de Liberpay y no forma parte de su código, se trata solamente de ayudar a entender el funcionamiento de Liberapay a personas que no hablen ingles o prefieran por comodidad leerlo en español.
 
-Fuente original > README.MD de Liberapay > https://github.com/liberapay/liberapay.com/blob/master/README.md
+> Esto es solo una traducíon del repositorio de Liberpay y no forma
+> parte de su código, se trata solamente de ayudar a entender el
+> funcionamiento de Liberapay a personas que no hablen ingles o
+> prefieran por comodidad leerlo en español.
+> 
+> Fuente original > [README.MD de
+> Liberapay](https://github.com/liberapay/liberapay.com/blob/master/README.md)
+
+
 
 # Liberapay
 
@@ -12,42 +19,42 @@ Fuente original > README.MD de Liberapay > https://github.com/liberapay/liberapa
 [![Income](https://img.shields.io/liberapay/receives/Liberapay.svg)](https://liberapay.com/Liberapay)
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/liberapay/donate)
 
-[Liberapay](http://liberapay.com) is a recurrent donations platform. We help you fund the creators and projects you appreciate.
+[Liberapay](http://liberapay.com) es una plataforma de donaciones recurrentes. Ayudamos a financiar a los creadores y a los proyectos que aprecias.
 
-Note: This webapp is not self-hostable.
+Nota: Esta webapp no se puede ejecutar por cuenta.
 
-## Table of Contents
+## Tabla de Contenidos
 
-- [Contact](#contact)
-- [Contributing to the translations](#contributing-to-the-translations)
-- [Contributing to the code](#contributing-to-the-code)
-  - [Introduction](#introduction)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-  - [Running](#running)
-    - [Payday](#payday)
+- [Contacto](#contacto)
+- [Contribuyendo a las traducciones](#contribuyendo-a-las-traducciones)
+- [Contribuyendo al código](#contribuyendo-al-codigo)
+  - [Introducción](#introduccion)
+  - [Instalación](#instalacion)
+  - [Configuración](#configuracion)
+  - [Ejecutando](#ejecutando)
+    - [Día de pago](#dia-de-pago)
   - [SQL](#sql)
-  - [CSS and JavaScript](#css-and-javascript)
-  - [Testing](#testing)
+  - [CSS y JavaScript](#css-y-javascript)
+  - [Probando](#probando)
     - [Updating test fixtures](#updating-test-fixtures)
     - [Speeding up the tests](#speeding-up-the-tests)
   - [Tinkering with payments](#tinkering-with-payments)
-  - [Modifying python dependencies](#modifying-python-dependencies)
-  - [Processing personal data](#processing-personal-data)
-  - [Deploying the app](#deploying-the-app)
+  - [Modificando las dependencias de python](#modificando-las-dependencias-de-python)
+  - [Procesando datos personales](#procesando-datos-personales)
+  - [Desplegando la app](#desplegando-la-app)
   - [Setting up a development environment using Docker](#setting-up-a-development-environment-using-docker)
-- [License](#license)
+- [Licencia](#licencia)
 
-## Contact
+## Contacto
 
 Want to chat? [Join us on Gitter](https://gitter.im/liberapay/salon). (If you use IRC, [Gitter has a gateway](https://irc.gitter.im/), and we're also in the #liberapay channel on Freenode.)
 
 Alternatively you can post a message in [our GitHub salon](https://github.com/liberapay/salon).
 
 
-## Contributing to the translations
+## Contribuyendo a la traducción
 
-You can help translate Liberapay [via Weblate](https://hosted.weblate.org/engage/liberapay/). Current status:
+Puedes ayudar a traducir Liberapay [vía Weblate](https://hosted.weblate.org/engage/liberapay/). Estado actual:
 
 [![global translation status](https://hosted.weblate.org/widgets/liberapay/-/287x66-white.png)](https://hosted.weblate.org/engage/liberapay/?utm_source=widget)
 
@@ -56,9 +63,9 @@ You can help translate Liberapay [via Weblate](https://hosted.weblate.org/engage
 If you have questions about translating Liberapay, you can ask them [in the salon](https://github.com/liberapay/salon/labels/i18n).
 
 
-## Contributing to the code
+## Contribuyendo al código
 
-### Introduction
+### Introducción
 
 Liberapay was originally forked from [Gratipay](https://github.com/gratipay/gratipay.com) and inherited its web micro-framework [Pando](https://github.com/AspenWeb/pando.py) (*né* Aspen), which is based on filesystem routing and [simplates](http://simplates.org/). Don't worry, it's quite simple. For example to make Liberapay return a `Hello $user, your id is $userid` message for requests to the URL `/$user/hello`, you only need to create the file `www/%username/hello.spt` with this inside:
 
@@ -76,7 +83,7 @@ The `_` function attempts to translate the message into the user's language and 
 
 The python code inside simplates is only for request-specific logic, common backend code is in the `liberapay/` directory.
 
-### Installation
+### Instalación
 
 Make sure you have the following dependencies installed first:
 
@@ -102,13 +109,13 @@ Then you can set up the DB:
 
     make schema
 
-### Configuration
+### Configuración
 
 Environment variables are used for configuration, the default values are in
 `defaults.env` and `tests/test.env`. You can override them in
 `local.env` and `tests/local.env` respectively.
 
-### Running
+### Ejecutando
 
 Once you've installed everything and set up the database, you can run the app:
 
@@ -124,7 +131,7 @@ To grant admin permissions to an account, modify the database like so:
 
     psql liberapay -c "update participants set privileges = 1 where username = 'account-username'"
 
-#### Payday
+#### Día de pago
 
 To run a local payday open [http://localhost:8339/admin/payday](http://localhost:8339/admin/payday) and click the "Run payday" button. You can add `OVERRIDE_PAYDAY_CHECKS=yes` in the `local.env` file to disable the safety checks that prevent running payday at the wrong time.
 
@@ -140,7 +147,7 @@ instead put the changes in `sql/branch.sql`. During deployment that script will
 be run on the production DB and the changes will be merged into `sql/schema.sql`.
 That process is semi-automated by `release.sh`.
 
-### CSS and JavaScript
+### CSS y JavaScript
 
 For our styles we use [SASS](http://sass-lang.com/) and [Bootstrap 3](https://getbootstrap.com/). Stylesheets are in the `style/` directory and our JavaScript code is in `js/`. Our policy for both is to include as little as possible of them: the website should be almost entirely usable without JS, and our CSS should leverage Bootstrap as much as possible instead of containing lots of custom rules that would become a burden to maintain.
 
@@ -149,7 +156,7 @@ directory. We do that to be able to easily customize it by changing values in
 `style/variables.scss`. Modifying the files in `style/bootstrap/` is probably
 not a good idea.
 
-### Testing
+### Probando
 
 The easiest way to run the test suite is:
 
@@ -177,8 +184,7 @@ PostgreSQL is designed to prevent data loss, so it does a lot of synchronous dis
 
 Liberapay was built on top of [MangoPay](https://www.mangopay.com/) for payments, however they [kicked us out](https://medium.com/liberapay-blog/liberapay-is-in-trouble-b58b40714d82) so we've shifted to integrating with multiple payment processors. We currently support [Stripe](https://stripe.com/docs) and [PayPal](https://developer.paypal.com/docs/). However, support for Mangopay hasn't been completely removed yet.
 
-### Modifying python dependencies
-
+### Modificando las dependencias de python
 All new dependencies need to be audited to check that they don't contain malicious code or security vulnerabilities.
 
 We use [pip's Hash-Checking Mode](https://pip.pypa.io/en/stable/reference/pip_install/#hash-checking-mode) to protect ourselves from dependency tampering. Thus, when adding or upgrading a dependency the new hashes need to be computed and put in the requirements file. For that you can use [hashin](https://github.com/peterbe/hashin):
@@ -191,11 +197,11 @@ If for some reason you need to rehash all requirements, run `make rehash-require
 
 To upgrade all the dependencies in a requirements file, run `hashin -u -r requirements_XXX.txt -p 3.6 -p 3.7`. You may have to run extra `hashin` commands if new subdependencies are missing.
 
-### Processing personal data
+### Procesando datos personales
 
 When writing code that handles personal information, keep in mind the principles enshrined in the [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation).
 
-### Deploying the app
+### Desplegando la app
 
 Note: Liberapay cannot be self-hosted, this section is only meant to document how we deploy new versions.
 
@@ -228,7 +234,7 @@ All arguments are passed to the underlying `py.test` command, so you can use `-x
 
     docker-compose -f docker/tests.yml run tests -x --ff
 
-## License
+## Licencia
 
 [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/) (See [this discussion](https://github.com/liberapay/liberapay.com/issues/564) for details.)
 
