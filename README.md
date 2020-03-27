@@ -44,6 +44,7 @@ Nota: Esta webapp no se puede ejecutar por cuenta.
   - [Desplegando la app](#desplegando-la-app)
   - [Configurar un entorno de desarrollo utilizando Docker](#configurar-un-entorno-de-desarrollo-utilizando-docker)
 - [Licencia](#licencia)
+- [Créditos de la traducción](#créditos-de-la-traducción)
 
 ## Contacto
 
@@ -237,9 +238,9 @@ All arguments are passed to the underlying `py.test` command, so you can use `-x
 [CC0 Dedicación de Dominio Público](https://creativecommons.org/publicdomain/zero/1.0/) (Haz [clic aquí](https://github.com/liberapay/liberapay.com/issues/564) para más detalles.)
 
 
-## Traducido por
+## Créditos de la taducción
 
-[Álvaro Araoz](https://imalvaro.com)
+Traducid por [Álvaro Araoz](https://imalvaro.com).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgxNTM2MDc2NiwtODE1MzYwNzY2XX0=
+eyJoaXN0b3J5IjpbMTEyMDExNTAwOCwtODE1MzYwNzY2XX0=
 -->
