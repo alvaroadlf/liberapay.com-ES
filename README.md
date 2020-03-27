@@ -1,4 +1,4 @@
-# Spanish translation of the Liberapay repository
+# Traducción al castellano del repositorio de Liberapay
 
 > Esto es solo una traducíon del repositorio de Liberpay y no forma
 > parte de su código, se trata solamente de ayudar a entender el
@@ -26,7 +26,7 @@ Nota: Esta webapp no se puede ejecutar por cuenta.
 ## Tabla de Contenidos
 
 - [Contacto](#contacto)
-- [Contribuyendo a las traducciones](#contribuyendo-a-las-traducciones)
+- [Contribuyendo a las traducción](#contribuyendo-a-las-traducción)
 - [Contribuyendo al código](#contribuyendo-al-código)
   - [Introducción](#introducción)
   - [Instalación](#instalación)
