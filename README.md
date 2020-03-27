@@ -27,12 +27,12 @@ Nota: Esta webapp no se puede ejecutar por cuenta.
 
 - [Contacto](#contacto)
 - [Contribuyendo a las traducciones](#contribuyendo-a-las-traducciones)
-- [Contribuyendo al código](#contribuyendo-al-codigo)
-  - [Introducción](#introduccion)
-  - [Instalación](#instalacion)
-  - [Configuración](#configuracion)
+- [Contribuyendo al código](#contribuyendo-al-código)
+  - [Introducción](#introducción)
+  - [Instalación](#instalación)
+  - [Configuración](#configuración)
   - [Ejecutando](#ejecutando)
-    - [Día de pago](#dia-de-pago)
+    - [Día de pago](#día-de-pago)
   - [SQL](#sql)
   - [CSS y JavaScript](#css-y-javascript)
   - [Probando](#probando)
@@ -42,14 +42,14 @@ Nota: Esta webapp no se puede ejecutar por cuenta.
   - [Modificando las dependencias de python](#modificando-las-dependencias-de-python)
   - [Procesando datos personales](#procesando-datos-personales)
   - [Desplegando la app](#desplegando-la-app)
-  - [Setting up a development environment using Docker](#setting-up-a-development-environment-using-docker)
+  - [Configurar un entorno de desarrollo utilizando Docker](#configurar-un-entorno-de-desarrollo-utilizando-docker)
 - [Licencia](#licencia)
 
 ## Contacto
 
-Want to chat? [Join us on Gitter](https://gitter.im/liberapay/salon). (If you use IRC, [Gitter has a gateway](https://irc.gitter.im/), and we're also in the #liberapay channel on Freenode.)
+¿Quieres hablar? [Únete a nosotros en Gitter](https://gitter.im/liberapay/salon). (Si usas IRC, [Gitter tiene una gateway](https://irc.gitter.im/), y también estamos en el canal #liberapay en Freenode.)
 
-Alternatively you can post a message in [our GitHub salon](https://github.com/liberapay/salon).
+Alternativamente, puedes publicar un mensaje en [nuestro salón en GitHub](https://github.com/liberapay/salon).
 
 
 ## Contribuyendo a la traducción
@@ -60,14 +60,14 @@ Puedes ayudar a traducir Liberapay [vía Weblate](https://hosted.weblate.org/eng
 
 [![translation status by language](https://hosted.weblate.org/widgets/liberapay/-/multi-auto.svg)](https://hosted.weblate.org/projects/liberapay/core/?utm_source=widget)
 
-If you have questions about translating Liberapay, you can ask them [in the salon](https://github.com/liberapay/salon/labels/i18n).
+Si tiene preguntas sobre la traducción de Liberapay, puedes preguntar [en el salón](https://github.com/liberapay/salon/labels/i18n).
 
 
 ## Contribuyendo al código
 
 ### Introducción
 
-Liberapay was originally forked from [Gratipay](https://github.com/gratipay/gratipay.com) and inherited its web micro-framework [Pando](https://github.com/AspenWeb/pando.py) (*né* Aspen), which is based on filesystem routing and [simplates](http://simplates.org/). Don't worry, it's quite simple. For example to make Liberapay return a `Hello $user, your id is $userid` message for requests to the URL `/$user/hello`, you only need to create the file `www/%username/hello.spt` with this inside:
+Liberapay originalmente fue un fork de [Gratipay](https://github.com/gratipay/gratipay.com) y heredó su micro-framework web [Pando](https://github.com/AspenWeb/pando.py) (*né* Aspen), que se basa en el enrutamiento del sistema de archivos y [simplates](http://simplates.org/). No te preocupes, es bastante simple. Por ejemplo, para hacer que Liberapay devuelva un `Hola $user, tu id es $userid` para las peticiones desde la URL `/$user/hello`, solo tienes que crear el archivo `www/%username/hello.spt` con el siguiente contenido:
 
 ```
 from liberapay.utils import get_participant
@@ -77,75 +77,73 @@ participant = get_participant(state)
 {{ _("Hello {0}, your id is {1}", request.path['username'], participant.id) }}
 ```
 
-As illustrated by the last line our default template engine is [Jinja](http://jinja.pocoo.org/).
+Como muestra la última línea, nuestro motor de plantillas predeterminado es [Jinja](http://jinja.pocoo.org/).
 
-The `_` function attempts to translate the message into the user's language and escapes the variables properly (it knows that it's generating a message for an HTML page).
+La función `_` intenta traducir el mensaje al idioma del usuario y escapa de las variables correctamente (sabe que está generando un mensaje para una página HTML).
 
-The python code inside simplates is only for request-specific logic, common backend code is in the `liberapay/` directory.
+El código de puthon dentro de simplates es sólo para la lógica de petición-específica, el código común del backend se encuentra en el directorio `liberapay/`.
 
 ### Instalación
 
-Make sure you have the following dependencies installed first:
+Asegúrate de tener las siguientes dependencias instaladas primero:
 
 - python ≥ 3.6
-  - including the C headers of python and libffi, which are packaged separately in many Linux distributions
-- postgresql 9.6 (see [the official download & install docs](https://www.postgresql.org/download/))
+   - incluidos los headers C de python y libffi, que van por separado en muchas distribuciones de Linux
+- postgresql 9.6 (ver [los documentos oficiales de descarga e instalación](https://www.postgresql.org/download/))
 - make
 
-Then run:
+A continuación, ejecuta:
 
     make env
 
-Now you need to give yourself superuser postgres powers (if it hasn't been done already), and create two databases:
+Ahora debes otorgar poderes de superusuario de postgres (si aún no se ha hecho) y crear dos bases de datos:
 
     su postgres -c "createuser --superuser $(whoami)"
 
     createdb liberapay
     createdb liberapay_tests
 
-If you need a deeper understanding take a look at the [Database Roles](https://www.postgresql.org/docs/9.4/static/user-manag.html) and [Managing Databases](https://www.postgresql.org/docs/9.4/static/managing-databases.html) sections of PostgreSQL's documentation.
+Si necesitas entenderlo mejor, echa un vistazo a las secciones [Roles de la Base de Datos](https://www.postgresql.org/docs/9.4/static/user-manag.html) y a [Gestionando Bases de Datos](https://www.postgresql.org/docs/9.4/static/managing-databases.html) de la documentación de PostgreSQL's..
 
-Then you can set up the DB:
+Entonces puedes configurar la DB:
 
     make schema
 
 ### Configuración
 
-Environment variables are used for configuration, the default values are in
-`defaults.env` and `tests/test.env`. You can override them in
-`local.env` and `tests/local.env` respectively.
+Las variables de entorno se utilizan para la configuración, los valores por defecto están en
+`defaults.env` y en `tests/test.env`. Puedes sobreescribirlos en
+`local.env` y en `tests/local.env` respectivamente.
 
 ### Ejecutando
 
-Once you've installed everything and set up the database, you can run the app:
+Una vez que hayas instalado todo y configurado la base de datos, puedes ejecutar la aplicación:
 
     make run
 
-It should now be accessible at [http://localhost:8339/](http://localhost:8339/).
+Debería ser accesible desde [http://localhost:8339/](http://localhost:8339/).
 
-There are no users provided by default. You can create accounts as you would on the real website, and if you want you can also create a bunch of fake users (but they're not great):
+No hay usuarios proporcionados por defecto. Puedes crear cuentas como lo harías en el la web real, y si lo deseas, también puedes crear un grupo de usuarios falsos (pero no son geniales):
 
     make data
 
-To grant admin permissions to an account, modify the database like so:
+Para otorgar permisos de administrador a una cuenta, modifica la base de datos de la siguiente manera:
 
     psql liberapay -c "update participants set privileges = 1 where username = 'account-username'"
 
 #### Día de pago
 
-To run a local payday open [http://localhost:8339/admin/payday](http://localhost:8339/admin/payday) and click the "Run payday" button. You can add `OVERRIDE_PAYDAY_CHECKS=yes` in the `local.env` file to disable the safety checks that prevent running payday at the wrong time.
+Para ejecutar un día de pago local abre [http://localhost:8339/admin/payday](http://localhost:8339/admin/payday) y haz clic en el botón "Run payday". Puedes añadir `OVERRIDE_PAYDAY_CHECKS=yes` en el archivo `local.env` para desactivar las comprobaciones de seguridad que impiden que se ejecute el día de pago en el momento equivocado.
 
 ### SQL
 
-The python code interacts with the database by sending raw SQL queries through
-the [postgres.py](https://postgres-py.readthedocs.org/en/latest/) library.
+El código de Python interactúa con la base de datos enviando consultas SQL sin procesar a través de la librería [postgres.py](https://postgres-py.readthedocs.org/en/latest/).
 
-The [official PostgreSQL documentation](https://www.postgresql.org/docs/9.6/static/index.html) is your friend when dealing with SQL, especially the sections "[The SQL Language](https://www.postgresql.org/docs/9.6/static/sql.html)" and "[SQL Commands](https://www.postgresql.org/docs/9.6/static/sql-commands.html)".
+La [documentación oficial de PostgreSQL](https://www.postgresql.org/docs/9.6/static/index.html) es tu amiga cuando se trata de SQL, especialmente las secciones "[El Idioma SQL](https://www.postgresql.org/docs/9.6/static/sql.html)" y "[Comandos SQL](https://www.postgresql.org/docs/9.6/static/sql-commands.html)".
 
-The DB schema is in `sql/schema.sql`, but don't modify that file directly,
-instead put the changes in `sql/branch.sql`. During deployment that script will
-be run on the production DB and the changes will be merged into `sql/schema.sql`.
-That process is semi-automated by `release.sh`.
+La estructura de la DB se encuentra en `sql/schema.sql`, pero no modifiques directamente el archivo,
+en su lugar haz los cambios en `sql/branch.sql`. Durante el despliegue, ese script se ejecutará en la base de datos de producción y los cambios se fusionarán en el archivo `sql/schema.sql`.
+Ese proceso está semiautomatizado por `release.sh`.
 
 ### CSS y JavaScript
 
@@ -209,7 +207,7 @@ Liberapay is currently hosted on [AWS](https://aws.amazon.com/) (Ireland).
 
 To deploy the app simply run `release.sh`, it'll guide you through it. Of course you need to be given access first.
 
-### Setting up a development environment using Docker
+### Configurar un entorno de desarrollo utilizando Docker
 
 If you don't want to install the dependencies directly on your machine, you can spin up a development environment easily, assuming you have [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) installed:
 
@@ -236,9 +234,9 @@ All arguments are passed to the underlying `py.test` command, so you can use `-x
 
 ## Licencia
 
-[CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/) (See [this discussion](https://github.com/liberapay/liberapay.com/issues/564) for details.)
+[CC0 Dedicación de Dominio Público](https://creativecommons.org/publicdomain/zero/1.0/) (Haz [clic aquí](https://github.com/liberapay/liberapay.com/issues/564) para más detalles.)
 
 
 ## Traducido por
 
-Álvaro Araoz
+[Álvaro Araoz](https://imalvaro.com)
