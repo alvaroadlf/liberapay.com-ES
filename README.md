@@ -240,3 +240,6 @@ All arguments are passed to the underlying `py.test` command, so you can use `-x
 ## Traducido por
 
 [Álvaro Araoz](https://imalvaro.com)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTgxNTM2MDc2Nl19
+-->
